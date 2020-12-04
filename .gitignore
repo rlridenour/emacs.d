@@ -16,3 +16,5 @@ tramp
 flycheck_*.elc
 custom.el
 /elpy
+.mc-lists.el
+private/

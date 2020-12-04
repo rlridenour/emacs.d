@@ -51,9 +51,21 @@
 ;; set load path
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
-
-
+(require 'base)
+(require 'base-theme)
+(require 'base-extensions)
+(require 'base-functions)
+(require 'base-writing)
+(require 'base-dired)
+(require 'lang-org)
+(require 'lang-markdown)
+(require 'lang-latex)
+(require 'lang-html)
+(require 'keybindings)
+(require 'misc)
 
 (provide 'init)
 

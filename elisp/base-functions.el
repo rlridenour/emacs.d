@@ -20,6 +20,7 @@
   (balance-windows)
   (other-window 1))
 
+;; Fullscreen
 
 (defun toggle-frame-maximized-undecorated ()
   (interactive)
@@ -27,18 +28,20 @@
          (on? (and (frame-parameter frame 'undecorated)
                    (eq (frame-parameter frame 'fullscreen) 'maximized)))
          (geom (frame-monitor-attribute 'geometry))
-         (initial-x (first geom))
-         (display-height (first (last geom))))
-    (if on?
-        (progn
-          (set-frame-parameter frame 'undecorated nil)
-          (toggle-frame-maximized))
-      (progn
-        (set-frame-position frame initial-x 0)
-        (set-frame-parameter frame 'fullscreen 'maximized)
-        (set-frame-parameter frame 'undecorated t)
-        (set-frame-height frame (- display-height 26) nil t)
-        (set-frame-position frame initial-x 0)))))
+         (x (nth 0 geom))
+         (y (nth 1 geom))
+         (display-height (nth 3 geom))
+         (display-width (nth 2 geom))
+         (cut (if on?
+                  (if ns-auto-hide-menu-bar 26 50)
+                (if ns-auto-hide-menu-bar 4 26))))
+    (set-frame-position frame x y)
+    (set-frame-parameter frame 'fullscreen-restore 'maximized)
+    (set-frame-parameter nil 'fullscreen 'maximized)
+    (set-frame-parameter frame 'undecorated (not on?))
+    (set-frame-height frame (- display-height cut) nil t)
+    (set-frame-width frame (- display-width 20) nil t)
+    (set-frame-position frame x y)))
 
 (defun insert-date-string ()
   "Insert current date yyyymmdd."
@@ -350,5 +353,17 @@
     ))
   )
 (global-set-key (kbd "C-`") 'iterm-goto-filedir-or-home)
+
+
+;; Saved Keyboard Macros
+
+;; Splits Org-mode list items
+
+
+(fset 'split-org-item
+   [?\C-k ?\M-\\ return ?\C-y])
+
+(fset 'convert-markdown-to-org
+   [?\M-< ?\M-% ?* return ?- return ?! ?\M-< ?\C-\M-% ?# ?* backspace backspace ?  ?# ?* ?$ return return ?! ?\M-< ?\M-% ?# return ?* return ?!])
 
 (provide 'base-functions)

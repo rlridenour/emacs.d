@@ -54,5 +54,6 @@
 	      ("s-;" . flyspell-correct-at-point)
 	      ("C-;" . flyspell-correct-previous)))
 
+(use-package olivetti)
 
 (provide 'base-writing)

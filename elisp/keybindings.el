@@ -24,74 +24,76 @@
 ;; Hydra-toggle
 
 
-(defhydra hydra-toggle (:color blue) 
-  "toggle"
-  ("a" abbrev-mode "abbrev")
-  ("c" column-number-mode "column")
-  ("C" cdlatex-mode "cdlatex")
-  ("d" toggle-debug-on-error "debug")
-  ("e" evil-mode "evil")
-  ("f" auto-fill-mode "fill")
-  ;; ("g" god-mode "god")
-  ("l" display-line-numbers-mode "linum")
-  ("m" toggle-frame-maximized-undecorated "max")
-  ("o" olivetti-mode "olivetti")
-  ("r" read-only-mode "read-only") 
-  ("t" toggle-truncate-lines "truncate")
-  ("w" wc-mode "word-count")
-  ("W" whitespace-mode "whitespace")
-  ("q" nil "global"))
+(pretty-hydra-define hydra-toggle
+  (:color blue :quit-key "q" :title "Toggle")
+  ("Basic"
+   (("a" abbrev-mode "abbrev" :toggle t)
+    ("d" toggle-debug-on-error "debug" (default value 'debug-on-error))
+    ("i" aggressive-indent-mode "indent" :toggle t)
+    ("f" auto-fill-mode "fill" :toggle t)
+    ("l" display-line-numbers-mode "linum" :toggle t)
+    ("m" toggle-frame-maximized-undecorated "max" :toggle t)
+    ("p" smartparens-mode "smartparens" :toggle t)
+    ("t" toggle-truncate-lines "truncate" :toggle t)
+    ("s" whitespace-mode "whitespace" :toggle t))
+   "Writing"
+   (("c" cdlatex-mode "cdlatex" :toggle t)
+    ("o" olivetti-mode "olivetti" :toggle t)
+    ("r" read-only-mode "read-only" :toggle t) 
+    ("w" wc-mode "word-count" :toggle t))))
+
+
+
+
 ;; (global-set-key (kbd "s-t") 'hydra-toggle/body)
 
 ;; Major-mode Hydras
 
 
-(major-mode-hydra-bind markdown-mode "Format"
-  ("h" markdown-insert-header-dwim "header") 
-  ("l" markdown-insert-link "link")
-  ("u" markdown-insert-uri "url")
-  ("f" markdown-insert-footnote "footnote")
-  ("w" markdown-insert-wiki-link "wiki")
-  ("r" markdown-insert-reference-link-dwim "r-link")
-  ("n" markdown-cleanup-list-numbers "clean-lists")
-  ("c" markdown-complete-buffer "complete"))
+(major-mode-hydra-define markdown-mode
+  (:quit-key "q")
+  ("Format"
+   (("h" markdown-insert-header-dwim "header")
+    ("l" markdown-insert-link "link")
+    ("u" markdown-insert-uri "url")
+    ("f" markdown-insert-footnote "footnote")
+    ("w" markdown-insert-wiki-link "wiki")
+    ("r" markdown-insert-reference-link-dwim "r-link")
+    ("n" markdown-cleanup-list-numbers "clean-lists")
+    ("c" markdown-complete-buffer "complete"))))
 
-(major-mode-hydra-bind markdown-mode "Pandoc"
-		       ("A" pandoc-pdfarticle "pdfarticle")
-		       ("B" pandoc-beamer "beamer")
-		       ("C" pandoc-syllabus "Course syllabus")
-		       ("S" pandoc-slides "slides")
-		       ("H" pandoc-handout "handout")
-		       ("O" pandoc-obuletter "obu letter")
-		       ("D" pandoc-docx "docx")
-		       ("H" pandoc-html "html")
-		       ("P" pandoc-pdf "pdf")
-		       ("t" pandoc-clean "trash non-md")
 
-		       ("q" nil))
+(major-mode-hydra-define latex-mode
+  (:quit-key "q")
+  ("Bibtex"
+   (("b" ivy-bibtex "Ivy-Bibtex"))
+   "LaTeXmk"
+   (("p" rlr/tex-pvc "pvc")
+    ("c" tex-clean "clean aux")
+    ("C" tex-clean-all "clean all"))))
 
-(major-mode-hydra-bind latex-mode "Bibtex"
-		       ("b" ivy-bibtex "Ivy-Bibtex"))
+(major-mode-hydra-define org-mode
+  (:quit-key "q")
+  ("Export"
+   (("l" org-latex-export-to-latex "Org to LaTeX")
+    ("p" org-latex-export-to-pdf "Org to PDF")
+    ("b" org-beamer-export-to-pdf "Org to Beamer-PDF")
+    ("B" org-beamer-export-to-latex "Org to Beamer-LaTeX")
+    ("s" lecture-slides "Lecture slides")
+    )
+   "Bibtex"
+   (("r" ivy-bibtex "Ivy-Bibtex"))
+   "Clean"
+   (("c" tex-clean "clean aux")
+    ("C" tex-clean-all "clean all"))))
 
-(major-mode-hydra-bind latex-mode "LaTeXmk"
-		       ("p" rlr/tex-pvc "pvc")
-		       ("c" tex-clean "clean aux")
-		       ("C" tex-clean-all "clean all")
 
-		       ("q" nil))
 
-(major-mode-hydra-bind org-mode "Export"
-  ("b" org-beamer-export-to-pdf "Org to Beamer-PDF")
-  ("p" org-latex-export-to-pdf "Org to PDF"))
 
-(major-mode-hydra-bind org-mode "Bibtex"
-  ("r" ivy-bibtex "Ivy-Bibtex"))
-
-(major-mode-hydra-bind org-mode "Clean"
-  ("c" tex-clean "clean aux")
-  ("C" tex-clean-all "clean all")
-
-  ("q" nil))
+(major-mode-hydra-define dired-mode
+  (:quit-key "q")
+  ("Tools"
+   (("d" +macos/open-in-default-program "Open in Default Program"))))
 
 
 
@@ -146,15 +148,14 @@
  ("C-c C-k" . compile)
  ("<s-backspace>" . kill-whole-line)
  ("s-t" . hydra-toggle/body)
- ("s-\\" . hydra-org/body)
  ("s-l" . hydra-locate/body)
+ ("s-/" . avy-goto-char-timer)
  ("C-c f" . hydra-locate/body)
  ("C-c k" . prelude-kill-other-buffers)
  ("C-c u" . unfill-paragraph)
  ("s-d" . rlr/ivy-dired-recent-dirs)
  ("C-c v" . counsel-M-x)
  ("s-=" . endless/ispell-word-then-abbrev)
- ("<f5>" . call-last-kbd-macro)
  ("C-c C-<return>" . split-org-item))
 
 (provide 'keybindings)

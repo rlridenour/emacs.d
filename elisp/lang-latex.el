@@ -225,8 +225,11 @@ only adds KEYS to it."
 	  (default       . bibtex-completion-format-citation-default))))
 
 (use-package ebib
-  :init
-  (setq ebib-preload-bib-search-dirs "~/Dropbox/bibtex/randybib.bib"))
+  :defer t
+  :config
+  (setq ebib-bibtex-dialect 'biblatex)
+  :custom
+  (ebib-preload-bib-files '("~/bibtex/rlr-bib/rlr.bib")))
 
 
 

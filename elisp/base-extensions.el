@@ -123,6 +123,6 @@
         '("~/.emacs.d/elisp/snippets")))
   (yas-global-mode 1))
 
-
+(use-package wc-mode)
 
 (provide 'base-extensions)

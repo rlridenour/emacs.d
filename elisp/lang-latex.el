@@ -6,6 +6,7 @@
   :init
   (setq TeX-parse-self t
 	TeX-auto-save t
+  TeX-electric-math t
 	TeX-electric-sub-and-superscript t
 	TeX-quote-after-quote t
 	TeX-clean-confirm nil
@@ -213,8 +214,8 @@ only adds KEYS to it."
   ;; :bind ("s-4" . ivy-bibtex)
   :after (ivy)
   :config
-  (setq bibtex-completion-bibliography '("~/bibtex/rlr-bib/rlr.bib"))
-  (setq reftex-default-bibliography '("~/bibtex/rlr-bib/rlr.bib"))
+  (setq bibtex-completion-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
+  (setq reftex-default-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
   (setq bibtex-completion-pdf-field "File")
   (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation)
   (setq bibtex-completion-format-citation-functions
@@ -229,7 +230,7 @@ only adds KEYS to it."
   :config
   (setq ebib-bibtex-dialect 'biblatex)
   :custom
-  (ebib-preload-bib-files '("~/bibtex/rlr-bib/rlr.bib")))
+  (ebib-preload-bib-files '("~/Dropbox/bibtex/rlr.bib")))
 
 
 

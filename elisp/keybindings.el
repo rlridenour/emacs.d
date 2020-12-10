@@ -83,6 +83,8 @@
     )
    "Bibtex"
    (("r" ivy-bibtex "Ivy-Bibtex"))
+   "View"
+   (("p" org-toggle-pretty-entities "org-pretty"))
    "Clean"
    (("c" tex-clean "clean aux")
     ("C" tex-clean-all "clean all"))))
@@ -121,6 +123,17 @@
  ("hj" . prelude-switch-to-previous-buffer))
 
 
+;; Make things more Mac-like
+
+
+(bind-keys
+ ("<s-up>". beginning-of-buffer)
+ ("<s-down>" . end-of-buffer)
+ ("<s-right>" . end-of-visual-line)
+ ("<s-left>" . beginning-of-visual-line)
+ ("s-w" . delete-frame)
+ ("<C-tab>" . other-window))
+
 
 
 (bind-keys
@@ -129,7 +142,6 @@
  ("C-2" . split-window-below-focus)
  ("C-3" . split-window-right-focus)
  ("C-4" . nuke-all-buffers)
- ("s-5" . delete-frame)
  ("s-6" . toggle-window-split)
  ("S-C-<left>" . shrink-window-horizontally)
  ("S-C-<right>" . enlarge-window-horizontally)
@@ -138,7 +150,7 @@
  ("C-x c" . save-buffers-kill-emacs)
  ("C-x w" . delete-frame)
  ;; ("s-." . helm-buffers-list)
- ;; ("C-c i" . ivy-imenu-goto)	
+ ;; ("C-c i" . ivy-imenu-goto)
  ;; ("C-c b" . ivy-bookmark-goto)
  ("C-x C-b" . ibuffer)
  ("RET" . newline-and-indent)
@@ -151,7 +163,7 @@
  ("s-l" . hydra-locate/body)
  ("s-/" . avy-goto-char-timer)
  ("C-c f" . hydra-locate/body)
- ("C-c k" . prelude-kill-other-buffers)
+ ("M-s-k" . prelude-kill-other-buffers)
  ("C-c u" . unfill-paragraph)
  ("s-d" . rlr/ivy-dired-recent-dirs)
  ("C-c v" . counsel-M-x)

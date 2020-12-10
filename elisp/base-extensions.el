@@ -46,7 +46,7 @@
 
 (use-package  ace-window
   :ensure
-  :bind ("s-w" . ace-window)
+  :bind ("C-c w" . ace-window)
   :config
   ;; (setq aw-leading-char-style 'path)
   (setq aw-background nil)
@@ -124,5 +124,15 @@
   (yas-global-mode 1))
 
 (use-package wc-mode)
+
+;; (use-package prescient)
+
+;; (use-package ivy-prescient
+;; 	:config
+;; 	(ivy-prescient-mode t))
+;; (use-package company-prescient
+;; 	:config
+;; 	(company-prescient-mode t))
+
 
 (provide 'base-extensions)

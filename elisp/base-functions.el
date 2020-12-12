@@ -55,56 +55,6 @@
 (global-set-key (kbd "<f8>") 'insert-standard-date)
 (global-set-key (kbd "C-c d") 'insert-date-string)
 
-(defun rlr/smart-open-line ()
-  (interactive)
-  (move-end-of-line nil)
-  (newline-and-indent))
-(global-set-key (kbd "s-<return>") 'rlr/smart-open-line)
-
-(defun delete-file-and-buffer ()
-  "Kill the current buffer and deletes the file it is visiting."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (when filename
-      (if (vc-backend filename)
-	  (vc-delete-file filename)
-	(when (y-or-n-p (format "Are you sure you want to delete %s? " filename))
-	  (delete-file filename)
-	  (message "Deleted file %s" filename)
-	  (kill-buffer))))))
-(global-set-key (kbd "C-c D") 'delete-file-and-buffer)
-
-(defun rename-buffer-and-file ()
-  "Rename current buffer and if the buffer is visiting a file, rename it too."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-	(rename-buffer (read-from-minibuffer "New name: " (buffer-name)))
-      (let ((new-name (read-file-name "New name: " filename)))
-	(cond
-	 ((vc-backend filename) (vc-rename-file filename new-name))
-	 (t
-	  (rename-file filename new-name t)
-	  (set-visited-file-name new-name t t)))))))
-(global-set-key (kbd "C-c r") 'rename-buffer-and-file)
-
-(defun open-with (arg)
-  "Open visited file in default external program.
-  When in dired mode, open file under the cursor.
-  With a prefix ARG always prompt for command to use."
-  (interactive "P")
-  (let* ((current-file-name
-	  (if (eq major-mode 'dired-mode)
-	      (dired-get-file-for-visit)
-	    buffer-file-name))
-	 (open (pcase system-type
-		 (`darwin "open")
-		 ((or `gnu `gnu/linux `gnu/kfreebsd) "xdg-open")))
-	 (program (if (or arg (not open))
-		      (read-shell-command "Open current file with: ")
-		    open)))
-    (start-process "prelude-open-with-process" nil program current-file-name)))
-(global-set-key (kbd "C-c o") 'open-with)
 
 ;; Open files in dired mode using 'open' in OS X
 (eval-after-load "dired"
@@ -114,21 +64,6 @@
 	 (let ((fn (dired-get-file-for-visit)))
 	   (start-process "default-app" nil "open" fn))))))
 
-(defun prelude-switch-to-previous-buffer ()
-  "Switch to previously open buffer.
-  Repeated invocations toggle between the two most recently open buffers."
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-
-(defun prelude-kill-other-buffers ()
-  "Kill all buffers but the current one.
-  Doesn't mess with special buffers."
-  (interactive)
-  (-each
-      (->> (buffer-list)
-	   (-filter #'buffer-file-name)
-	   (--remove (eql (current-buffer) it)))
-    #'kill-buffer))
 
 (defun rlr-count-words (&optional begin end)
   "count words between BEGIN and END (region); if no region defined, count words in buffer"

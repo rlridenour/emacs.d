@@ -19,3 +19,4 @@ custom.el
 .mc-lists.el
 private/
 bookmarks
+/var

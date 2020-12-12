@@ -13,7 +13,9 @@
 ;; Hydras
 
 
-(use-package ivy-hydra)
+;; (use-package ivy-hydra)
+
+(use-package hydra)
 
 (use-package major-mode-hydra
   :bind
@@ -123,54 +125,93 @@
  ("hj" . prelude-switch-to-previous-buffer))
 
 
+
+;; Global Keybindings
+
 ;; Make things more Mac-like
 
-
-(bind-keys
- ("<s-up>". beginning-of-buffer)
- ("<s-down>" . end-of-buffer)
- ("<s-right>" . end-of-visual-line)
- ("<s-left>" . beginning-of-visual-line)
- ("s-w" . delete-frame)
- ("<C-tab>" . other-window))
-
+(general-define-key
+ "<s-up>" 'beginning-of-buffer
+ "<s-down>" 'end-of-buffer
+ "<s-right>" 'end-of-visual-line
+ "<s-left>" 'beginning-of-visual-line
+ "s-w" 'delete-frame
+ "<C-tab>" 'other-window)
 
 
-(bind-keys
- ("C-0" . delete-window-balance)
- ("C-1" . delete-other-windows)
- ("C-2" . split-window-below-focus)
- ("C-3" . split-window-right-focus)
- ("C-4" . nuke-all-buffers)
- ("s-6" . toggle-window-split)
- ("S-C-<left>" . shrink-window-horizontally)
- ("S-C-<right>" . enlarge-window-horizontally)
- ("S-C-<down>" . shrink-window)
- ("S-C-<up>" . enlarge-window)
- ("C-x c" . save-buffers-kill-emacs)
- ("C-x w" . delete-frame)
- ;; ("s-." . helm-buffers-list)
- ;; ("C-c i" . ivy-imenu-goto)
- ;; ("C-c b" . ivy-bookmark-goto)
- ("C-x C-b" . ibuffer)
- ("RET" . newline-and-indent)
- ("M-/" . hippie-expand)
- ("C-+" . text-scale-increase)
- ("C--" . text-scale-decrease)
- ("C-c C-k" . compile)
- ("<s-backspace>" . kill-whole-line)
- ("s-t" . hydra-toggle/body)
- ("s-l" . hydra-locate/body)
- ("s-/" . avy-goto-char-timer)
- ("C-c f" . hydra-locate/body)
- ("M-s-k" . prelude-kill-other-buffers)
- ("C-c u" . unfill-paragraph)
- ("s-d" . rlr/ivy-dired-recent-dirs)
- ("C-c v" . counsel-M-x)
- ("s-=" . endless/ispell-word-then-abbrev)
- ("C-c C-<return>" . split-org-item))
 
+
+(general-define-key
+
+ ;; Windows and frames
+ "C-0" 'delete-window-balance
+ "C-1" 'delete-other-windows
+ "C-2" 'split-window-below-focus
+ "C-3" 'split-window-right-focus
+ "C-4" 'nuke-all-buffers
+ "s-6" 'toggle-window-split
+ "S-C-<left>" 'shrink-window-horizontally
+ "S-C-<right>" 'enlarge-window-horizontally
+ "S-C-<down>" 'shrink-window
+ "S-C-<up>" 'enlarge-window
+ "C-x w" 'delete-frame
+ "M-o" 'crux-other-window-or-switch-buffer
+
+ ;; Files and buffers
+ "C-x c" 'save-buffers-kill-emacs
+ "C-x C-b" 'ibuffer
+ "C-`" 'iterm-goto-filedir-or-home
+ "s-o" 'consult-buffer
+ "s-k" 'kill-this-buffer
+
+ ;; Search
+
+ "s-l" 'hydra-locate/body
+ "s-f" 'consult-line
+ 
+ ;; Editing
+ "RET" 'newline-and-indent
+ "M-/" 'hippie-expand
+ "C-+" 'text-scale-increase
+ "C--" 'text-scale-decrease
+ "<s-backspace>" 'kill-whole-line
+ "s-j" 'crux-top-join-line
+ "c-k" 'crux-smart-kill-line
+ "<S-return>" 'crux-smart-open-line
+ "<C-S-return>" 'crux-smart-open-line-above
+
+ "s-t" 'hydra-toggle/body
+ 
+ "s-/" 'avy-goto-char-timer
+ "M-s-k" 'prelude-kill-other-buffers
+ "s-d" 'rlr/ivy-dired-recent-dirs
+ "s-=" 'endless/ispell-word-then-abbrev
+ "<f8>" 'insert-standard-date)
+
+
+
+;; "C-c u" 'unfill-paragraph
+;; "C-c C-<return>" 'split-org-item)
+;; "C-c v" 'counsel-M-x
+;; "C-c f" 'hydra-locate/body
+;; "C-c o" 'crux-open-with
+;; "C-c D" 'crux-delete-file-and-buffer
+;; "C-c C-k" 'compile
+
+
+
+;; * Prefix Keybindings
+;; :prefix can be used to prevent redundant specification of prefix keys
+(general-define-key
+ :prefix "C-c"
+ ;; bind "C-c a" to 'org-agenda
+ "a" 'org-agenda
+ "b" 'consult-bookmark
+ "c" 'org-capture
+ "D" 'crux-delete-file-and-buffer
+ "k" 'crux-kill-other-buffers
+ "o" 'consult-outline
+ "u" 'unfill-paragraph
+ "w" 'ace-window
+ "z" 'reveal-in-osx-finder)
 (provide 'keybindings)
-
-
-

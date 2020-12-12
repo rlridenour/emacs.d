@@ -1,51 +1,81 @@
-(use-package counsel
-  :diminish ivy-mode
-  :bind
-  (("s-r" . counsel-recentf)
-   ("C-s" . swiper-isearch)
-   ("C-r" . swiper-isearch-backward)
-   ("s-f" . swiper)
-   ("M-x" . counsel-M-x)
-   ("C-x C-f" . counsel-find-file)
-   ("s-o" . counsel-find-file)
-   ("C-c b" . counsel-bookmark)
-   ("C-c i" . counsel-imenu)
-   ("s-." . ivy-switch-buffer)
-   ("<f1> f" . counsel-describe-function)
-   ("<f1> v" . counsel-describe-variable)
-   ("<f1> l" . counsel-load-library)
-   ("<f2> i" . counsel-info-lookup-symbol)
-   ("<f2> u" . counsel-unicode-char)
-   ("C-c g" . counsel-git)
-   ("C-c j" . counsel-git-grep)
-   ("C-c s" . counsel-rg)
-   ("C-x l" . locate)
-   ("C-S-o" . counsel-rhythmbox)
-   ("C-c C-r" . ivy-resume)
-   ("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line-and-call))
-  :init
-  (setq ivy-display-style 'fancy)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 10)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq counsel-find-file-ignore-regexp
-	(concat
-	 ;; File names beginning with # or .
-	 "\\(?:\\`[#.]\\)"
-	 ;; File names ending with # or ~
-	 "\\|\\(?:\\`.+?[#~]\\'\\)"))
+
+(use-package general
   :config
-  (ivy-mode 1)
-  (counsel-mode 1))
+  (general-auto-unbind-keys)
+  )
+(use-package flycheck)
+
+(use-package selectrum
+  :config
+  (selectrum-mode +1))
+
+(use-package prescient)
+
+(use-package selectrum-prescient
+  :config
+  (selectrum-prescient-mode +1)
+  (prescient-persist-mode +1))
+
+
+
+(use-package consult
+  :straight (:host github :repo "minad/consult" :branch "master")
+  ;; Replace bindings. Lazily loaded due to use-package.
+ :bind (("C-c h" . consult-history)
+         ("C-c o" . consult-outline)
+         ("s-r" . consult-buffer)
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x 5 b" . consult-buffer-other-frame)
+         ("C-x r x" . consult-register)
+         ("C-x r b" . consult-bookmark)
+         ("M-g o" . consult-outline) ;; "M-s o" is a good alternative
+         ("M-g m" . consult-mark)    ;; "M-s m" is a good alternative
+         ("M-g l" . consult-line)    ;; "M-s l" is a good alternative
+         ("M-s m" . consult-multi-occur)
+         ("M-y" . consult-yank-pop)
+         ("<help> a" . consult-apropos)
+         :map flycheck-command-map
+         ("!" . consult-flycheck))
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Replace functions (consult-multi-occur is a drop-in replacement)
+  (fset 'multi-occur #'consult-multi-occur)
+
+  ;; Configure other variables and modes in the :config section, after lazily loading the package
+  :config
+
+  ;; Optionally enable previews. Note that individual previews can be disabled
+  ;; via customization variables.
+  (consult-preview-mode))
+
+(use-package marginalia
+  :straight (:host github :repo "minad/marginalia" :branch "main")
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
+(use-package embark
+  :straight (:host github :repo "oantolin/embark" :branch "master")
+  :after selectrum
+  :bind (:map minibuffer-local-map
+         ("C-o" . embark-act)
+         ("C-S-o" . embark-act-noexit)
+         :map embark-file-map
+         ("j" . dired-jump)))
+
+
+
 
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char))
 
 (use-package  ace-window
-  :ensure
   :bind ("C-c w" . ace-window)
   :config
   ;; (setq aw-leading-char-style 'path)
@@ -98,8 +128,11 @@
 (use-package undo-tree
   :diminish undo-tree-mode
   :config (global-undo-tree-mode)
-  :bind (("s-z" . undo-tree-undo)
-	 ("s-Z" . undo-tree-redo)))
+  ;; :bind (("s-z" . undo-tree-undo)
+	 ;; ("s-Z" . undo-tree-redo)))
+  :general
+  ("s-z" 'undo-tree-undo
+   "s-Z" 'undo-tree-redo))
 
 (use-package evil-nerd-commenter
   :bind (("M-;" . evilnc-comment-or-uncomment-lines)))
@@ -125,14 +158,11 @@
 
 (use-package wc-mode)
 
-;; (use-package prescient)
 
-;; (use-package ivy-prescient
-;; 	:config
-;; 	(ivy-prescient-mode t))
-;; (use-package company-prescient
-;; 	:config
-;; 	(company-prescient-mode t))
+(use-package company-prescient
+	:config
+	(company-prescient-mode t))
 
+(use-package crux)
 
 (provide 'base-extensions)

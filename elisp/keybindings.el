@@ -163,6 +163,7 @@
  "C-`" 'iterm-goto-filedir-or-home
  "s-o" 'consult-buffer
  "s-k" 'kill-this-buffer
+ "s-r" 'consult-buffer
 
  ;; Search
 
@@ -176,9 +177,10 @@
  "C--" 'text-scale-decrease
  "<s-backspace>" 'kill-whole-line
  "s-j" 'crux-top-join-line
- "c-k" 'crux-smart-kill-line
+ "C-k" 'crux-smart-kill-line
  "<S-return>" 'crux-smart-open-line
  "<C-S-return>" 'crux-smart-open-line-above
+ "M-y" 'consult-yank-pop
 
  "s-t" 'hydra-toggle/body
  
@@ -186,14 +188,16 @@
  "M-s-k" 'prelude-kill-other-buffers
  "s-d" 'rlr/ivy-dired-recent-dirs
  "s-=" 'endless/ispell-word-then-abbrev
+ "<help> a" 'consult-apropos
+ "C-x 4 b" 'consult-buffer-other-window
+ "C-x 5 b" 'consult-buffer-other-frame
+ "C-x r x" 'consult-register
+ "M-s m" 'consult-multi-occur
  "<f8>" 'insert-standard-date)
-
 
 
 ;; "C-c u" 'unfill-paragraph
 ;; "C-c C-<return>" 'split-org-item)
-;; "C-c v" 'counsel-M-x
-;; "C-c f" 'hydra-locate/body
 ;; "C-c o" 'crux-open-with
 ;; "C-c D" 'crux-delete-file-and-buffer
 ;; "C-c C-k" 'compile
@@ -209,7 +213,9 @@
  "b" 'consult-bookmark
  "c" 'org-capture
  "D" 'crux-delete-file-and-buffer
+ "h" 'consult-history
  "k" 'crux-kill-other-buffers
+ "m" 'consult-mark
  "o" 'consult-outline
  "u" 'unfill-paragraph
  "w" 'ace-window

@@ -21,24 +21,11 @@
 (use-package consult
   :straight (:host github :repo "minad/consult" :branch "master")
   ;; Replace bindings. Lazily loaded due to use-package.
- :bind (("C-c h" . consult-history)
-         ("C-c o" . consult-outline)
-         ("s-r" . consult-buffer)
-         ("C-x 4 b" . consult-buffer-other-window)
-         ("C-x 5 b" . consult-buffer-other-frame)
-         ("C-x r x" . consult-register)
-         ("C-x r b" . consult-bookmark)
-         ("M-g o" . consult-outline) ;; "M-s o" is a good alternative
-         ("M-g m" . consult-mark)    ;; "M-s m" is a good alternative
-         ("M-g l" . consult-line)    ;; "M-s l" is a good alternative
-         ("M-s m" . consult-multi-occur)
-         ("M-y" . consult-yank-pop)
-         ("<help> a" . consult-apropos)
-         :map flycheck-command-map
-         ("!" . consult-flycheck))
+         
 
   ;; The :init configuration is always executed (Not lazy!)
   :init
+  (setq consult-themes '(modus-operandi modus-vivendi hc-zenburn))
 
   ;; Replace functions (consult-multi-occur is a drop-in replacement)
   (fset 'multi-occur #'consult-multi-occur)
@@ -50,6 +37,9 @@
   ;; via customization variables.
   (consult-preview-mode))
 
+(use-package consult-selectrum
+  :straight (:host github :repo "minad/consult" :branch "master"))
+         
 (use-package marginalia
   :straight (:host github :repo "minad/marginalia" :branch "main")
   ;; The :init configuration is always executed (Not lazy!)

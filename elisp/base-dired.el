@@ -22,7 +22,8 @@
   (setq-default dired-omit-extensions '("fdb_latexmk" "aux" "bbl" "blg" "fls" "glo" "idx" "ilg" "ind" "ist" "log" "out" "gz" "bcf" "run.xml"  "DS_Store" "auctex-auto"))
 
   (setq dired-omit-files
-        (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$")))
+        (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$\\|^\\..+$")))
 
+(use-package dired+)
 
 (provide 'base-dired)

@@ -41,7 +41,7 @@
    "Writing"
    (("c" cdlatex-mode "cdlatex" :toggle t)
     ("o" olivetti-mode "olivetti" :toggle t)
-    ("r" read-only-mode "read-only" :toggle t) 
+    ("r" read-only-mode "read-only" :toggle t)
     ("w" wc-mode "word-count" :toggle t))))
 
 
@@ -136,7 +136,9 @@
  "<s-right>" 'end-of-visual-line
  "<s-left>" 'beginning-of-visual-line
  "s-w" 'delete-frame
- "<C-tab>" 'other-window)
+ "<C-tab>" 'other-window
+ "<M-down>" 'forward-paragraph
+ "<M-up>" 'backward-paragraph)
 
 
 
@@ -169,7 +171,7 @@
 
  "s-l" 'hydra-locate/body
  "s-f" 'consult-line
- 
+
  ;; Editing
  "RET" 'newline-and-indent
  "M-/" 'hippie-expand
@@ -183,10 +185,9 @@
  "M-y" 'consult-yank-pop
 
  "s-t" 'hydra-toggle/body
- 
+
  "s-/" 'avy-goto-char-timer
- "M-s-k" 'prelude-kill-other-buffers
- "s-d" 'rlr/ivy-dired-recent-dirs
+ "s-d" 'diredp-dired-recent-dirs
  "s-=" 'endless/ispell-word-then-abbrev
  "<help> a" 'consult-apropos
  "C-x 4 b" 'consult-buffer-other-window
@@ -217,6 +218,9 @@
  "k" 'crux-kill-other-buffers
  "m" 'consult-mark
  "o" 'consult-outline
+ "r" 'crux-rename-file-and-buffer
+ "s" 'crux-cleanup-buffer-or-region
+ "t" 'crux-visit-term-buffer
  "u" 'unfill-paragraph
  "w" 'ace-window
  "z" 'reveal-in-osx-finder)

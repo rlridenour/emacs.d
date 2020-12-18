@@ -13,12 +13,6 @@
 
 
 
-
-
-
-
-;; (add-hook 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
-
 ;; Enable ignoring a headline during export.
 (require 'ox-extra)
 (ox-extras-activate '(ignore-headlines))

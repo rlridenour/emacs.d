@@ -19,7 +19,7 @@
 
 
 (use-package consult
-  :straight (:host github :repo "minad/consult" :branch "master")
+  :straight (:host github :repo "minad/consult" :branch "main")
   ;; Replace bindings. Lazily loaded due to use-package.
          
 
@@ -28,17 +28,11 @@
   (setq consult-themes '(modus-operandi modus-vivendi hc-zenburn))
 
   ;; Replace functions (consult-multi-occur is a drop-in replacement)
-  (fset 'multi-occur #'consult-multi-occur)
-
-  ;; Configure other variables and modes in the :config section, after lazily loading the package
-  :config
-
-  ;; Optionally enable previews. Note that individual previews can be disabled
-  ;; via customization variables.
-  (consult-preview-mode))
+  (fset 'multi-occur #'consult-multi-occur))
 
 (use-package consult-selectrum
-  :straight (:host github :repo "minad/consult" :branch "master"))
+  :straight (:host github :repo "minad/consult" :branch "main")
+  )
          
 (use-package marginalia
   :straight (:host github :repo "minad/marginalia" :branch "main")

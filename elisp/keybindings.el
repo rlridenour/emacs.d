@@ -97,7 +97,7 @@
 (major-mode-hydra-define dired-mode
   (:quit-key "q")
   ("Tools"
-   (("d" +macos/open-in-default-program "Open in Default Program"))))
+   (("d" crux-open-with "Open in Default Program"))))
 
 
 

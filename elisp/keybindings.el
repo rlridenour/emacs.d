@@ -166,6 +166,7 @@
  "s-o" 'consult-buffer
  "s-k" 'kill-this-buffer
  "s-r" 'consult-buffer
+ "C-S-a" 'embark-act
 
  ;; Search
 

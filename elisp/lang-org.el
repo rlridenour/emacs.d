@@ -10,7 +10,7 @@
   (setq org-hide-leading-stars nil))
 
 
-
+(require 'org-tempo)
 
 
 ;; Enable ignoring a headline during export.

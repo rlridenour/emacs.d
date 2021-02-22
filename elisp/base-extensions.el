@@ -67,7 +67,7 @@
   ;; By default only the keybinding is shown as annotation.
   ;; Note that there is the command `marginalia-cycle' to
   ;; switch between the annotators.
-  ;; (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
 )
 
 (use-package embark

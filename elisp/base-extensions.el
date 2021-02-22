@@ -28,21 +28,12 @@
   (setq consult-themes '(modus-operandi modus-vivendi hc-zenburn))
 
   ;; Replace functions (consult-multi-occur is a drop-in replacement)
-  (fset 'multi-occur #'consult-multi-occur))
+  (fset 'multi-occur #'consult-multi-occur)
+  )
 
 (use-package consult-selectrum
   :straight (:host github :repo "minad/consult" :branch "main")
   )
-         
-;; (use-package marginalia
-;;   :straight (:host github :repo "minad/marginalia" :branch "main")
-;;   ;; The :init configuration is always executed (Not lazy!)
-;;   :init
-
-;;   ;; Must be in the :init section of use-package such that the mode gets
-;;   ;; enabled right away. Note that this forces loading the package.
-;;   (marginalia-mode))
-
 
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia

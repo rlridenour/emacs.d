@@ -163,7 +163,7 @@
  "C-x c" 'save-buffers-kill-emacs
  "C-x C-b" 'ibuffer
  "C-`" 'iterm-goto-filedir-or-home
- "s-o" 'consult-buffer
+ "s-o" 'find-file
  "s-k" 'kill-this-buffer
  "s-r" 'consult-buffer
  "C-S-a" 'embark-act

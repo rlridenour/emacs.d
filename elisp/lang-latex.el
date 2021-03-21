@@ -1,4 +1,4 @@
-					; LaTeX
+; LaTeX
 
 (use-package tex-site
   :straight auctex
@@ -210,14 +210,25 @@ only adds KEYS to it."
 
 
 ;; Use Ivy-bibtex for reference completions.
-(use-package ivy-bibtex
-  ;; :bind ("s-4" . ivy-bibtex)
-  :after (ivy)
+;; (use-package ivy-bibtex
+;;   ;; :bind ("s-4" . ivy-bibtex)
+;;   :after (ivy)
+;;   :config
+;;   (setq bibtex-completion-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
+;;   (setq reftex-default-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
+;;   (setq bibtex-completion-pdf-field "File")
+;;   (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation)
+;;   (setq bibtex-completion-format-citation-functions
+;; 	'((org-mode      . bibtex-completion-format-citation-orgref)
+;; 	  (latex-mode    . bibtex-completion-format-citation-cite)
+;; 	  ;; (markdown-mode    . bibtex-completion-format-citation-cite)
+;; 	  (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
+;; 	  (default       . bibtex-completion-format-citation-default))))
+
+(use-package bibtex-actions
+  :straight (:host github :repo "bdarcus/bibtex-actions")
   :config
-  (setq bibtex-completion-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
-  (setq reftex-default-bibliography '("/Users/rlridenour/Dropbox/bibtex/rlr.bib"))
-  (setq bibtex-completion-pdf-field "File")
-  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation)
+  (setq bibtex-completion-bibliography "~/Dropbox/bibtex/rlr.bib")
   (setq bibtex-completion-format-citation-functions
 	'((org-mode      . bibtex-completion-format-citation-orgref)
 	  (latex-mode    . bibtex-completion-format-citation-cite)
@@ -231,7 +242,5 @@ only adds KEYS to it."
   (setq ebib-bibtex-dialect 'biblatex)
   :custom
   (ebib-preload-bib-files '("~/Dropbox/bibtex/rlr.bib")))
-
-
 
 (provide 'lang-latex)

@@ -7,6 +7,7 @@
   (setq TeX-parse-self t
 	TeX-auto-save t
   TeX-electric-math t
+  LaTeX-electric-left-right-brace t
 	TeX-electric-sub-and-superscript t
 	TeX-quote-after-quote t
 	TeX-clean-confirm nil
@@ -35,6 +36,16 @@
 
 
 (use-package cdlatex
+  :init
+  (setq cdlatex-math-symbol-alist
+'((?. ("\\land" "\\cdot"))
+  (?v ("\\lor" "\\vee"))
+  (?> ("\\lif" "\\rightarrow"))
+  (?= ("\\liff" "\\Leftrightarrow" "\\Longleftrightarrow"))
+  (?! ("\\lneg" "\\neg"))
+  (?# ("\\Box"))
+  (?$ ("\\Diamond"))
+   ))
   :config
   (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
   (add-hook 'org-mode-hook 'turn-on-org-cdlatex))
@@ -242,5 +253,7 @@ only adds KEYS to it."
   (setq ebib-bibtex-dialect 'biblatex)
   :custom
   (ebib-preload-bib-files '("~/Dropbox/bibtex/rlr.bib")))
+
+	  
 
 (provide 'lang-latex)

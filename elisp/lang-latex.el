@@ -17,7 +17,7 @@
   (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
   (setq TeX-view-program-list
 	'(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
-  (setq org-latex-pdf-process (list "latexmk -shell-escape -f -pdf -quiet -interaction=nonstopmode %f"))
+  (setq org-latex-pdf-process (list "latexmk -shell-escape -f -pdf -quiet -interaction=nonstopmode  %f"))
 
 ;; Insert math-mode delimiters for LaTeX and ConTeXt.
 (add-hook 'ConTeXt-mode-hook
@@ -63,7 +63,7 @@
 
 ;; Start Emacs server
 
-(server-start)
+;; (server-start)
 
 
 

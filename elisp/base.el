@@ -21,13 +21,13 @@
 (show-paren-mode 1)
 
 ;; Turn off tool bar and scroll bar
-;; (scroll-bar-mode -1)
-;; (tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
 
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+;; (if (display-graphic-p)
+;;     (progn
+;;       (tool-bar-mode -1)
+;;       (scroll-bar-mode -1)))
 
 ;; Show line numbers and column numbers in mode line
 (line-number-mode 1)

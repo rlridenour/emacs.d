@@ -163,7 +163,7 @@
 (use-package yasnippet
   :config
   (setq yas-snippet-dirs (append yas-snippet-dirs
-        '("~/.emacs.d/elisp/snippets")))
+        '("~/.emacs.d/snippets")))
   (yas-global-mode 1))
 
 (use-package wc-mode)

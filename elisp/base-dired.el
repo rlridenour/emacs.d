@@ -26,4 +26,6 @@
 
 (use-package dired+)
 
+(define-key dired-mode-map [?\M-\r] 'crux-open-with)
+
 (provide 'base-dired)

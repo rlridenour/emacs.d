@@ -18,6 +18,21 @@
 (ox-extras-activate '(ignore-headlines))
 
 
+(require 'ox-latex)
+
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+			 '("rlr-article"
+			   "\\documentclass{article}
+      [NO-DEFAULT-PACKAGES]
+      [NO-PACKAGES]"
+			   ("\\section{%s}" . "\\section*{%s}")
+			   ("\\subsection{%s}" . "\\subsection*{%s}")
+			   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+			   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+			   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+)
+
 ;; (add-hook 'org-mode-hook 'wc-mode)
 
 

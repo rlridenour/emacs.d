@@ -22,7 +22,7 @@
 
 (with-eval-after-load 'ox-latex
 (add-to-list 'org-latex-classes
-			 '("rlr-article"
+			 '("org-article"
 			   "\\documentclass{article}
       [NO-DEFAULT-PACKAGES]
       [NO-PACKAGES]"

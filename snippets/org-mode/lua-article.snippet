@@ -2,12 +2,17 @@
 # name: lua-article
 # key: luaarticle
 # --
-* LaTeX Settings :ignore:
+:drawer:
 #+TITLE: ${1:Title}
 #+AUTHOR: Randy Ridenour
-#+LaTeX_CLASS: article
+#+LANGUAGE: en-us
+#+LaTeX_CLASS: org-article
 #+LaTeX_CLASS_OPTIONS: [11pt]
-#+LaTeX_HEADER: \usepackage{amssymb}
+#+LaTeX_HEADER: \usepackage{amsmath,amssymb}
+#+LaTeX_HEADER: \usepackage{graphicx}
+#+LaTeX_HEADER: \usepackage{longtable}
+#+LaTeX_HEADER: \usepackage{wrapfig}
+#+LaTeX_HEADER: \usepackage{rotating}
 #+LaTeX_HEADER: \usepackage{url}
 #+LaTeX_HEADER: \usepackage[normalem]{ulem}
 #+LaTeX_HEADER: \usepackage{microtype}
@@ -30,5 +35,6 @@
 #+LaTeX_HEADER:\usepackage[unicode=true]{hyperref}
 #+LaTeX_HEADER: 
 #+OPTIONS: toc:nil
+:end:
 
 $0

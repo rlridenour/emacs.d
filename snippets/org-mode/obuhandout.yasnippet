@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: obuhandout
+# key: obuhandout
+# --
+:drawer:
+#+TITLE: ${1:Title}
+#+AUTHOR: Randy Ridenour
+#+LaTeX_CLASS: org-handout
+#+LaTeX_CLASS_OPTIONS: [11pt]
+#+LaTeX_HEADER: % arara: lualatex: { interaction: nonstopmode, synctex: yes }
+#+LaTeX_HEADER: % \usepackage[authordate,url=false,isbn=false,backend=biber]{biblatex-chicago} %Change authordate to notes if desired.
+#+LaTeX_HEADER: % \addbibresource{/Users/rlridenour/Dropbox/bibtex/rlr.bib}
+#+OPTIONS: toc:nil
+#+LATEX: \thispagestyle{empty}
+#+LATEX: \RaggedRight
+:end:
+
+$0

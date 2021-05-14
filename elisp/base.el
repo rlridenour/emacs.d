@@ -204,6 +204,11 @@
     t))
 (add-hook 'kill-buffer-query-functions 'unkillable-scratch-buffer)
 
+;; Create new scratch buffer after saving.
+
+(run-with-idle-timer 1 t
+    '(lambda () (get-buffer-create "*scratch*")))
+
 
 ;; Mark date and time that files were saved.
 

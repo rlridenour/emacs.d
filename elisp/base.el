@@ -6,10 +6,10 @@
       display-time-day-and-date t)
 
 ;; Disable bell and flash modeline
-  (defun my-terminal-visible-bell ()
-	"A friendlier visual bell effect."
-	(invert-face 'mode-line)
-	(run-with-timer 0.1 nil 'invert-face 'mode-line))
+(defun my-terminal-visible-bell ()
+  "A friendlier visual bell effect."
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil 'invert-face 'mode-line))
 
 (setq visible-bell nil
       ring-bell-function 'my-terminal-visible-bell)
@@ -84,19 +84,19 @@
 
 
 (setq backup-directory-alist
-  `((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
-  `((".*" ,temporary-file-directory t)))
-  (setq backup-by-copying t)
-  (setq delete-old-versions t
-		kept-new-versions 6
-		kept-old-versions 2
-		version-control t)
+      `((".*" ,temporary-file-directory t)))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;; Recent files
 (require 'recentf)
 (setq recentf-max-saved-items 200
-  recentf-max-menu-items 15)
+      recentf-max-menu-items 15)
 (recentf-mode)
 
 ;; Use spotlight for locate.
@@ -143,9 +143,9 @@
 
 
 (add-hook 'ibuffer-mode-hook
-	  '(lambda ()
-	     (ibuffer-auto-mode 1)
-	     (ibuffer-switch-to-saved-filter-groups "home")))
+          '(lambda ()
+             (ibuffer-auto-mode 1)
+             (ibuffer-switch-to-saved-filter-groups "home")))
 
 ;; Shell
 
@@ -153,12 +153,12 @@
 
 (defun oleh-term-exec-hook ()
   (let* ((buff (current-buffer))
-	 (proc (get-buffer-process buff)))
+         (proc (get-buffer-process buff)))
     (set-process-sentinel
      proc
      `(lambda (process event)
-	(if (string= event "finished\n")
-	    (kill-buffer ,buff))))))
+        (if (string= event "finished\n")
+            (kill-buffer ,buff))))))
 (add-hook 'term-exec-hook 'oleh-term-exec-hook)
 
 
@@ -199,16 +199,19 @@
 (defun unkillable-scratch-buffer ()
   (if (equal (buffer-name (current-buffer)) "*scratch*")
       (progn
-	(delete-region (point-min) (point-max))
-	nil)
+        (delete-region (point-min) (point-max))
+        nil)
     t))
 (add-hook 'kill-buffer-query-functions 'unkillable-scratch-buffer)
 
 ;; Create new scratch buffer after saving.
-
-(run-with-idle-timer 1 t
-    '(lambda () (get-buffer-create "*scratch*")))
-
+                     
+(defun goto-scratch () 
+  "this sends you to the scratch buffer"
+  (interactive)
+  (let ((goto-scratch-buffer (get-buffer-create "*scratch*")))
+    (switch-to-buffer goto-scratch-buffer)
+    (org-mode)))
 
 ;; Mark date and time that files were saved.
 
@@ -227,10 +230,10 @@
 
 (setq insert-directory-program "/usr/local/bin/gls"); use proper GNU ls
 
-;Auto refresh buffers including dired
+                                        ;Auto refresh buffers including dired
 (setq global-auto-revert-non-file-buffers t)
 
-; Do not generate any messages (be quiet about refreshing Dired).
+                                        ; Do not generate any messages (be quiet about refreshing Dired).
 (setq auto-revert-verbose nil)
 
 ;; Allow recursive minibuffers
@@ -238,14 +241,14 @@
 ;;show recursion depth in minibuffer
 (minibuffer-depth-indicate-mode t)
 
-;two identical buffers get uniquely numbered names
+                                        ;two identical buffers get uniquely numbered names
 (require 'uniquify)
 
 ;; From [[https://dougie.io/emacs/indentation/#tldr-the-full-configuration]]
 
 
 
-; START TABS CONFIG
+                                        ; START TABS CONFIG
 ;; Create a variable for our preferred tab width
 (setq custom-tab-width 2)
 
@@ -290,7 +293,7 @@
 ;; END TABS CONFIG
 
 
-; Abbreviations and Bookmarks
+                                        ; Abbreviations and Bookmarks
 
 ;; Load Abbreviations
 

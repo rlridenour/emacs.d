@@ -167,6 +167,7 @@
  "s-k" 'kill-this-buffer
  "s-r" 'consult-buffer
  "C-S-a" 'embark-act
+ "C-c C-s" 'goto-scratch
 
  ;; Search
 

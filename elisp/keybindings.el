@@ -167,7 +167,6 @@
  "s-k" 'kill-this-buffer
  "s-r" 'consult-buffer
  "C-S-a" 'embark-act
- "C-c C-s" 'goto-scratch
 
  ;; Search
 
@@ -221,7 +220,8 @@
  "m" 'consult-mark
  "o" 'consult-outline
  "r" 'crux-rename-file-and-buffer
- "s" 'crux-cleanup-buffer-or-region
+ "s" 'goto-scratch
+ "S" 'crux-cleanup-buffer-or-region
  "t" 'crux-visit-term-buffer
  "u" 'unfill-paragraph
  "w" 'ace-window

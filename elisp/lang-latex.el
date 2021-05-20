@@ -110,6 +110,10 @@
   '(add-to-list 'TeX-command-list '("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber"))
   )    
 
+(eval-after-load "tex"
+  '(add-to-list 'TeX-command-list
+        '("Arara" "arara --verbose %s" TeX-run-TeX nil t :help "Run Arara.")))
+
 (defun tex-clean ()
   (interactive)
   (shell-command "latexmk -c"))

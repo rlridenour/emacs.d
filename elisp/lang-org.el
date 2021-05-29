@@ -1,5 +1,5 @@
-(use-package org
-  :straight org-plus-contrib)
+;; (use-package org
+  ;; :straight org-plus-contrib)
 
 (use-package org
   :init
@@ -9,6 +9,9 @@
   (setq org-adapt-indentation nil)
   (setq org-hide-leading-stars nil))
 
+
+(use-package org-contrib
+  :straight (:host nil :repo "https://git.sr.ht/~bzg/org-contrib"))
 
 (require 'org-tempo)
 

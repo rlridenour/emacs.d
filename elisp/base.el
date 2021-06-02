@@ -130,6 +130,10 @@
     (pulse-momentary-highlight-region begin end)))
 (advice-add 'yank :around #'ct/yank-pulse-advice)
 
+;; Don't display async shell command process buffers
+
+(add-to-list 'display-buffer-alist
+  (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
 
 ;; ibuffer
 

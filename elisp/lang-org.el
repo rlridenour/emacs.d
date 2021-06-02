@@ -91,6 +91,7 @@
   (org-beamer-export-to-latex)
   (kill-buffer)
 					;(kill-buffer "*.tex")
+  (arara-all)
   (find-file "*-data.org" t))
 
 

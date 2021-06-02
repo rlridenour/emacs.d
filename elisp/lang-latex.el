@@ -122,6 +122,9 @@
   (interactive)
   (shell-command "latexmk -C"))
 
+(defun arara-all ()
+  (interactive)
+  (async-shell-command "mkall"))
 
 ;; Beamer
 

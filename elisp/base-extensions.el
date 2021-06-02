@@ -175,4 +175,6 @@
 
 (use-package crux)
 
+
+(use-package emacs-fish)
 (provide 'base-extensions)

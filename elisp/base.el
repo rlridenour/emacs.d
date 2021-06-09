@@ -309,5 +309,10 @@
 (require 'bookmark)
 (bookmark-bmenu-list)
 
+
+;; gpg
+
+(setq epg-gpg-program "/usr/local/bin/gpg")
+
 (provide 'base)
 ;;; base ends here

@@ -21,3 +21,5 @@ private/
 bookmarks
 /var
 recentf
+/request
+org-roam.db

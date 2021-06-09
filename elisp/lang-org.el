@@ -3,11 +3,12 @@
 
 (use-package org
   :init
-  (setq org-directory "~/Dropbox/org/")
+  (setq org-directory "/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/")
   :config
   (setq org-startup-indented nil)
   (setq org-adapt-indentation nil)
-  (setq org-hide-leading-stars nil))
+  (setq org-hide-leading-stars nil)
+  (setq org-agenda-files '("/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/tasks/")))
 
 
 (use-package org-contrib
@@ -95,5 +96,81 @@
   (find-file "*-data.org" t))
 
 
+;; Org-capture
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/tasks/tasks.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ;; ("j" "Journal" entry (file+datetree "~/Dropbox/Org/journal.org")
+        ;;  "* %?\nEntered on %U\n  %i\n  %a")
+        )
+      )
+     (define-key global-map "\C-cc" 'org-capture)
+
+;; Org-roam
+
+(use-package org-journal
+  :after org
+      :bind
+      ("C-c n j" . org-journal-new-entry)
+      :custom
+      (org-journal-dir "/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/")
+      (org-journal-date-prefix "#+TITLE: ")
+      (org-journal-file-format "%Y-%m-%d.org")
+      (org-journal-date-format "%A, %d %B %Y"))
+    (setq org-journal-enable-agenda-integration t)
+
+(use-package deft
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filename-as-title nil)
+  (deft-use-filter-string-for-filename t)
+  (deft-extensions '("org" "md" "txt"))
+  (deft-file-naming-rules '((noslash . "-")
+                            (nospace . "-")
+                            (case-fn . downcase)))
+  (deft-default-extension "org")
+  (deft-directory "/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/notes/"))
+
+(use-package org-roam
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory (file-truename "/Users/rlridenour/Library/Mobile Documents/com~apple~CloudDocs/org/roam/"))
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
+
+(setq org-roam-capture-templates
+  '(("d" "default" plain (function org-roam-capture--get-point)
+     "%?"
+     :file-name "%<%Y%m%d%H%M%S>-${slug}"
+     :head "#+title: ${title}\n#+ROAM_TAGS: \n"
+     :unnarrowed t)))
+
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "daily/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n\n")))
+
+;; WriteFreely Blog
+
+(use-package writefreely
+  :after org
+  :ensure t
+  ;; Authentification token, if wanted.
+  ;; Alternatively (setq writefreely-auth-token "00000000-0000-0000-0000-000000000000")
+  :config (load (expand-file-name "writefreely-auth-token.el.gpg" user-emacs-directory)))
 
 (provide 'lang-org)

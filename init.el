@@ -3,6 +3,10 @@
 (setq user-full-name "Randy Ridenour")
 (setq user-mail-address "rlridenour@gmail.com")
 
+
+;; Silence the "Package cl is deprecated" warning.
+(setq byte-compile-warnings '(cl-functions))
+
 ;; Code
 
 ;; Package management using straight.el
@@ -66,6 +70,8 @@
 (require 'lang-html)
 (require 'keybindings)
 (require 'misc)
+
+
 
 (provide 'init)
 

@@ -175,6 +175,6 @@
 
 (use-package crux)
 
-(use-package emacs-fish)
+(use-package fish-mode)
 
 (provide 'base-extensions)

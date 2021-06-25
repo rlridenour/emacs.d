@@ -68,6 +68,7 @@
 (require 'lang-markdown)
 (require 'lang-latex)
 (require 'lang-html)
+(require 'hugo)
 (require 'keybindings)
 (require 'misc)
 

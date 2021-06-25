@@ -3,6 +3,7 @@
 (global-unset-key (kbd "C-z"))
 ;; (global-unset-key (kbd "s-p"))
 (global-unset-key (kbd "s-m"))
+(global-unset-key (kbd "s-h"))
 
 (use-package key-chord
   :defer t
@@ -44,6 +45,15 @@
     ("r" read-only-mode "read-only" :toggle t)
     ("w" wc-mode "word-count" :toggle t))))
 
+
+;; Hydra-hugo
+
+(pretty-hydra-define hydra-hugo
+  (:color blue :quit-key "q" :title "Hugo")
+  ("Blog"
+   (("n" hugo-draft-post "new draft")
+    ("p" hugo-publish-post "publish post")
+    ("t" hugo-timestamp "update timestamp"))))
 
 
 
@@ -186,6 +196,7 @@
  "M-y" 'consult-yank-pop
 
  "s-t" 'hydra-toggle/body
+ "s-h" 'hydra-hugo/body
 
  "s-/" 'avy-goto-char-timer
  "s-d" 'diredp-dired-recent-dirs
@@ -215,7 +226,7 @@
  "b" 'consult-bookmark
  "c" 'org-capture
  "D" 'crux-delete-file-and-buffer
- "h" 'consult-history
+ ;; "h" 'consult-history
  "k" 'crux-kill-other-buffers
  "m" 'consult-mark
  "o" 'consult-outline

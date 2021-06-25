@@ -2,6 +2,9 @@
 
 ;; Spelling
 
+;; (cond ((executable-find "enchant-2")  (setq-default ispell-program-name "enchant-2"))
+      ;; ((executable-find "aspell")     (setq-default ispell-program-name "aspell")))
+
 (setq ispell-program-name "/usr/local/bin/aspell")
 (setq ispell-extra-args '("--sug-mode=ultra"))
 
@@ -20,7 +23,7 @@
 (dolist (hook '(text-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 
-;; Check comments and strings when coding.
+;; ;; Check comments and strings when coding.
 (dolist (mode '(emacs-lisp-mode-hook
 		inferior-lisp-mode-hook
 		clojure-mode-hook
@@ -35,7 +38,7 @@
 (setq flyspell-issue-message-flag nil)
 
 
-;; Use F7 to check the current word, M-F7 for the next word.
+;; ;; Use F7 to check the current word, M-F7 for the next word.
 
 (global-set-key (kbd "<f7>") 'ispell-word)
 (defun flyspell-check-next-highlighted-word ()
@@ -48,11 +51,11 @@
 
 
 ;; Flyspell-correct-ivy uses the Ivy interface for spelling suggestions.
-(use-package flyspell-correct-ivy
-  :after flyspell
-  :bind (:map flyspell-mode-map
-	      ("s-;" . flyspell-correct-at-point)
-	      ("C-;" . flyspell-correct-previous)))
+;; (use-package flyspell-correct-ivy
+;;   :after flyspell
+;;   :bind (:map flyspell-mode-map
+;; 	      ("s-;" . flyspell-correct-at-point)
+;; 	      ("C-;" . flyspell-correct-previous)))
 
 (use-package olivetti)
 

@@ -14,6 +14,13 @@
 (setq visible-bell nil
       ring-bell-function 'my-terminal-visible-bell)
 
+;; Show file path in frame title
+
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
 ;; Turn on syntax highlighting for all buffers
 (global-font-lock-mode t)
 

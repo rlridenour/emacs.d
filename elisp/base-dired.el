@@ -19,7 +19,7 @@
   (setq dired-omit-verbose nil)
   ;; hide backup, autosave, *.*~ files
   ;; omit mode can be toggled using `C-x M-o' in dired buffer.
-  (setq-default dired-omit-extensions '("fdb_latexmk" "aux" "bbl" "blg" "fls" "glo" "idx" "ilg" "ind" "ist" "log" "out" "gz" "bcf" "run.xml"  "DS_Store" "auctex-auto"))
+  (setq-default dired-omit-extensions '("fdb_latexmk" "aux" "bbl" "blg" "fls" ".glo" "idx" "ilg" "ind" "ist" ".log" ".out" "gz" "bcf" "run.xml"  "DS_Store" "auctex-auto"))
 
   (setq dired-omit-files
         (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$\\|^\\..+$")))

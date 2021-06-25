@@ -166,11 +166,10 @@
 
 ;; WriteFreely Blog
 
-(use-package writefreely
-  :after org
-  :ensure t
+;; (use-package writefreely
+  ;; :after org
   ;; Authentification token, if wanted.
   ;; Alternatively (setq writefreely-auth-token "00000000-0000-0000-0000-000000000000")
-  :config (load (expand-file-name "writefreely-auth-token.el.gpg" user-emacs-directory)))
+  ;; :config (load (expand-file-name "writefreely-auth-token.el.gpg" user-emacs-directory)))
 
 (provide 'lang-org)

@@ -95,6 +95,12 @@
   (arara-all)
   (find-file "*-data.org" t))
 
+(defun canvas-copy ()
+  "Copy html for canvas pages"
+  (interactive)
+  (org-html-export-to-html)
+  (shell-command "canvas")
+)
 
 ;; Org-capture
 

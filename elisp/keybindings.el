@@ -26,6 +26,9 @@
 
 ;; Hydra-toggle
 
+(defun my/insert-unicode (unicode-name)
+       "Same as C-x 8 enter UNICODE-NAME."
+       (insert-char (gethash unicode-name (ucs-names))))
 
 (pretty-hydra-define hydra-toggle
   (:color blue :quit-key "q" :title "Toggle")
@@ -45,6 +48,87 @@
     ("r" read-only-mode "read-only" :toggle t)
     ("w" wc-mode "word-count" :toggle t))))
 
+
+
+(pretty-hydra-define hydra-logic
+  (:color blue :title "Logic")
+  ("Operators"
+   (("1" (my/insert-unicode "NOT SIGN") "¬" :exit nil)
+    ("2" (my/insert-unicode "AMPERSAND") "&" :exit nil)
+    ("3" (my/insert-unicode "LOGICAL OR") "v" :exit nil)
+    ("4" (my/insert-unicode "RIGHTWARDS ARROW") "→" :exit nil)
+    ("5" (my/insert-unicode "LEFT RIGHT ARROW") "↔" :exit nil)
+    ("6" (my/insert-unicode "THERE EXISTS") "∃" :exit nil)
+    ("7" (my/insert-unicode "FOR ALL") "∀" :exit nil)
+    ("8" (my/insert-unicode "WHITE MEDIUM SQUARE") "□" :exit nil)
+    ("9" (my/insert-unicode "LOZENGE") "◊" :exit nil))
+   "Lowercase"
+   (("a" (my/insert-unicode "LATIN SMALL LETTER A") "a" :exit nil)
+    ("b" (my/insert-unicode "LATIN SMALL LETTER B") "b" :exit nil)
+    ("c" (my/insert-unicode "LATIN SMALL LETTER C") "c" :exit nil)
+    ("d" (my/insert-unicode "LATIN SMALL LETTER D") "d" :exit nil)
+    ("e" (my/insert-unicode "LATIN SMALL LETTER E") "e" :exit nil)
+    ("f" (my/insert-unicode "LATIN SMALL LETTER F") "f" :exit nil)
+    ("g" (my/insert-unicode "LATIN SMALL LETTER G") "g" :exit nil)
+    ("h" (my/insert-unicode "LATIN SMALL LETTER H") "h" :exit nil)
+    ("i" (my/insert-unicode "LATIN SMALL LETTER I") "i" :exit nil)
+    ("j" (my/insert-unicode "LATIN SMALL LETTER J") "j" :exit nil)
+    ("k" (my/insert-unicode "LATIN SMALL LETTER K") "k" :exit nil)
+    ("l" (my/insert-unicode "LATIN SMALL LETTER L") "l" :exit nil)
+    ("m" (my/insert-unicode "LATIN SMALL LETTER M") "m" :exit nil)
+    ("n" (my/insert-unicode "LATIN SMALL LETTER N") "n" :exit nil)
+    ("o" (my/insert-unicode "LATIN SMALL LETTER O") "o" :exit nil)
+    ("p" (my/insert-unicode "LATIN SMALL LETTER P") "p" :exit nil)
+    ("q" (my/insert-unicode "LATIN SMALL LETTER Q") "q" :exit nil)
+    ("r" (my/insert-unicode "LATIN SMALL LETTER R") "r" :exit nil)
+    ("s" (my/insert-unicode "LATIN SMALL LETTER S") "s" :exit nil)
+    ("t" (my/insert-unicode "LATIN SMALL LETTER T") "t" :exit nil)
+    ("u" (my/insert-unicode "LATIN SMALL LETTER U") "u" :exit nil)
+    ("v" (my/insert-unicode "LATIN SMALL LETTER V") "v" :exit nil)
+    ("w" (my/insert-unicode "LATIN SMALL LETTER W") "w" :exit nil)
+    ("x" (my/insert-unicode "LATIN SMALL LETTER X") "x" :exit nil)
+    ("y" (my/insert-unicode "LATIN SMALL LETTER Y") "y" :exit nil)
+    ("z" (my/insert-unicode "LATIN SMALL LETTER Z") "z" :exit nil))
+   "Uppercase"
+   (("A" (my/insert-unicode "LATIN CAPITAL LETTER A") "A" :exit nil)
+    ("B" (my/insert-unicode "LATIN CAPITAL LETTER B") "B" :exit nil)
+    ("C" (my/insert-unicode "LATIN CAPITAL LETTER C") "C" :exit nil)
+    ("D" (my/insert-unicode "LATIN CAPITAL LETTER D") "D" :exit nil)
+    ("E" (my/insert-unicode "LATIN CAPITAL LETTER E") "E" :exit nil)
+    ("F" (my/insert-unicode "LATIN CAPITAL LETTER F") "F" :exit nil)
+    ("G" (my/insert-unicode "LATIN CAPITAL LETTER G") "G" :exit nil)
+    ("H" (my/insert-unicode "LATIN CAPITAL LETTER H") "H" :exit nil)
+    ("I" (my/insert-unicode "LATIN CAPITAL LETTER I") "I" :exit nil)
+    ("J" (my/insert-unicode "LATIN CAPITAL LETTER J") "J" :exit nil)
+    ("K" (my/insert-unicode "LATIN CAPITAL LETTER K") "K" :exit nil)
+    ("L" (my/insert-unicode "LATIN CAPITAL LETTER L") "L" :exit nil)
+    ("M" (my/insert-unicode "LATIN CAPITAL LETTER M") "M" :exit nil)
+    ("N" (my/insert-unicode "LATIN CAPITAL LETTER N") "N" :exit nil)
+    ("O" (my/insert-unicode "LATIN CAPITAL LETTER O") "O" :exit nil)
+    ("P" (my/insert-unicode "LATIN CAPITAL LETTER P") "P" :exit nil)
+    ("Q" (my/insert-unicode "LATIN CAPITAL LETTER Q") "Q" :exit nil)
+    ("R" (my/insert-unicode "LATIN CAPITAL LETTER R") "R" :exit nil)
+    ("S" (my/insert-unicode "LATIN CAPITAL LETTER S") "S" :exit nil)
+    ("T" (my/insert-unicode "LATIN CAPITAL LETTER T") "T" :exit nil)
+    ("U" (my/insert-unicode "LATIN CAPITAL LETTER U") "U" :exit nil)
+    ("V" (my/insert-unicode "LATIN CAPITAL LETTER V") "V" :exit nil)
+    ("W" (my/insert-unicode "LATIN CAPITAL LETTER W") "W" :exit nil)
+    ("X" (my/insert-unicode "LATIN CAPITAL LETTER X") "X" :exit nil)
+    ("Y" (my/insert-unicode "LATIN CAPITAL LETTER Y") "Y" :exit nil)
+    ("Z" (my/insert-unicode "LATIN CAPITAL LETTER Z") "Z" :exit nil))
+   "Parens"
+   (("(" (my/insert-unicode "LEFT PARENTHESIS") "(" :exit nil)
+    (")" (my/insert-unicode "RIGHT PARENTHESIS") ")" :exit nil)
+    ("[" (my/insert-unicode "LEFT SQUARE BRACKET") "[" :exit nil)
+    ("]" (my/insert-unicode "RIGHT SQUARE BRACKET") "]" :exit nil)
+    ("{" (my/insert-unicode "LEFT CURLY BRACKET") "{" :exit nil)
+    ("}" (my/insert-unicode "RIGHT CURLY BRACKET") "}" :exit nil))
+   "Space"
+   (("<SPC>" (my/insert-unicode "SPACE") "Space" :exit nil)
+    ("?" (my/insert-unicode "MEDIUM MATHEMATICAL SPACE") "Narrow space" :exit nil)
+    ("<left>" backward-char "move-left" :exit nil)
+    ("<right>" forward-char "move-right" :exit nil)
+    ("<kp-delete>" delete-char "delete" :exit nil))))
 
 ;; Hydra-hugo
 
@@ -197,6 +281,7 @@
 
  "s-t" 'hydra-toggle/body
  "s-h" 'hydra-hugo/body
+ "C-x 9" 'hydra-logic/body
 
  "s-/" 'avy-goto-char-timer
  "s-d" 'diredp-dired-recent-dirs

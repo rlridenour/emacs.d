@@ -87,6 +87,11 @@
 ;; Single space ends sentence:
 (setq sentence-end-double-space nil)
 
+
+; Map escape to cancel (like C-g)
+(define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
+(global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
+
 ;; Save backups and auto-saves to the system temp directory.
 
 
@@ -320,6 +325,8 @@
 ;; gpg
 
 (setq epg-gpg-program "/usr/local/bin/gpg")
+
+
 
 (provide 'base)
 ;;; base ends here

@@ -170,12 +170,4 @@
          :file-name "daily/%<%Y-%m-%d>"
          :head "#+title: %<%Y-%m-%d>\n\n")))
 
-;; WriteFreely Blog
-
-;; (use-package writefreely
-  ;; :after org
-  ;; Authentification token, if wanted.
-  ;; Alternatively (setq writefreely-auth-token "00000000-0000-0000-0000-000000000000")
-  ;; :config (load (expand-file-name "writefreely-auth-token.el.gpg" user-emacs-directory)))
-
 (provide 'lang-org)

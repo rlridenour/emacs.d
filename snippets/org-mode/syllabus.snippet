@@ -3,9 +3,12 @@
 # key: syllabus
 # condition: t                                                      
 # --
-* LaTeX Settings :ignore:
-#+LaTeX_CLASS: article
+#+TITLE: ${1:Title}
+:drawer:
+#+AUTHOR: Randy Ridenour
+#+LaTeX_CLASS: org-article
 #+LaTeX_CLASS_OPTIONS: [11pt]
+#+LaTeX_HEADER: % arara: lualatex: { interaction: nonstopmode, synctex: yes }
 #+LaTeX_HEADER: \usepackage{amssymb}
 #+LaTeX_HEADER: \usepackage{url}
 #+LaTeX_HEADER: \usepackage[normalem]{ulem}
@@ -24,14 +27,15 @@
 #+LaTeX_HEADER: \setlist[itemize]{noitemsep} % Comment out for wider separation in lists.
 #+LaTeX_HEADER: \setlist[enumerate]{noitemsep}
 #+LaTeX_HEADER:
+#+LaTeX_HEADER: \usepackage{lualatex-math,luatextra}
 #+LaTeX_HEADER: \usepackage{libertine}
-#+LaTeX_HEADER: \usepackage[libertine]{newtxmath}
-#+LaTeX_HEADER: \usepackage[scaled=0.96]{zi4}
-#+LaTeX_HEADER: \usepackage[T1]{fontenc}
+#+LaTeX_HEADER: \usepackage{unicode-math}          
+#+LaTeX_HEADER: \setmathfont[Scale=MatchUppercase]{libertinusmath-regular.otf}
+#+LaTeX_HEADER:\usepackage[unicode=true]{hyperref}
 #+OPTIONS: title:nil
 #+OPTIONS: toc:nil
-#+TITLE: ${1:Title}
-#+AUTHOR: Randy Ridenour
+
+
 #+LATEX: \newcommand{\coursenumber}{PHIL ${2:XXXX}}
 #+LATEX: \newcommand{\coursetitle}{${3:Title}}
 #+LATEX: \newcommand{\coursesection}{${4:A}}
@@ -40,6 +44,7 @@
 #+LATEX: \newcommand{\room}{${8:BABC} ${9:105}}
 #+LATEX: \newcommand{\semester}{${10:Fall} ${11:Year}}
 #+LATEX: \newcommand{\officehours}{${12:MTWR}, ${13:2:00}--${14:4:00}}
+
 
 #+BEGIN_EXPORT latex
 \begin{center}
@@ -59,6 +64,7 @@
 * OBU Mission
 
 As a Christian liberal arts university, OBU transforms lives by equipping students to pursue academic excellence, integrate faith with all areas of knowledge, engage a diverse world, and live worthy of the high calling of God in Christ.
+:end:
 
 $0
 

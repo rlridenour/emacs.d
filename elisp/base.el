@@ -92,18 +92,17 @@
 (define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
 (global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
 
-;; Save backups and auto-saves to the system temp directory.
+;; Save backups and auto-saves to a temp directory.
 
 
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-(setq backup-by-copying t)
-(setq delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.saves/"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
 
 ;; Recent files
 (require 'recentf)
